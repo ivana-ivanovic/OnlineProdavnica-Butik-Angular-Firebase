@@ -1,0 +1,202 @@
+
+<div fxLayout="row wrap" fxLayoutGap="0px grid" fxLayoutAlign="space-around start center">
+    <div fxFlex="45%" fxFlex.xs="95%" >
+        <h1>Podaci o korisniku</h1>
+        <section fxLayouth="column" >
+            <form fxLayouth="column"  fxLayoutGap="20px"  #editForm="ngForm" (ngSubmit)="finishEditing(editForm)">
+                <mat-card >
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>person</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Ime</mat-card-subtitle>
+                            <span>{{this.profileInput.name}}</span>
+                        </div>
+                        <mat-form-field  fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="name" type="text" placeholder="Unesite ime" 
+                            [(ngModel)]="this.profileInput.name" required #nameInput="ngModel" >
+                            <mat-error *ngIf="nameInput.hasError('required')">Ime je obavezno.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>person</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Prezime</mat-card-subtitle>
+                            <span>{{this.profileInput.surname}}</span>
+                        </div>
+                        <mat-form-field fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="surname" type="text" placeholder="Unesite prezime" 
+                            [(ngModel)]="this.profileInput.surname" required #surnameInput="ngModel" >
+                            <mat-error *ngIf="surnameInput.hasError('required')">Prezime je obavezno.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>location_on</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Ulica i broj</mat-card-subtitle>
+                            <span>{{this.profileInput.address}}</span>
+                        </div>
+                        <mat-form-field fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="address" type="text" placeholder="Unesite ulicu i broj" 
+                            [(ngModel)]="this.profileInput.address" required #addressInput="ngModel" >
+                            <mat-error *ngIf="addressInput.hasError('required')">Ulica i broj su obavezni.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>location_city</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Grad</mat-card-subtitle>
+                            <span>{{this.profileInput.city}}</span>
+                        </div>
+                        <mat-form-field fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="city" type="text" placeholder="Unesite grad" 
+                            [(ngModel)]="this.profileInput.city" required #cityInput="ngModel" >
+                            <mat-error *ngIf="cityInput.hasError('required')">Grad je obavezan.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>event</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Datum rodjenja</mat-card-subtitle>
+                            <span>{{this.profileInput.date}}</span>
+                        </div>
+                        <mat-form-field *ngIf="this.isEditing">
+                            <input matInput placeholder="Unesite datum rodjenja"   [matDatepicker]="picker" ngModel name="dateBirth" 
+                            [(ngModel)]="birthDate"  required #dateBirthInput="ngModel"> 
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="dateBirthInput.hasError('required')">Datum rodjenja je obavezan</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>email</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Email</mat-card-subtitle>
+                            <span>{{this.profileInput.email}}</span>
+                        </div>
+                        <mat-form-field fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="email" type="email" placeholder="Unesite email" 
+                            [(ngModel)]="this.profileInput.email" required #emailInput="ngModel" email>
+                            <mat-error *ngIf="emailInput.hasError('required')">Email je obavezan</mat-error>
+                            <mat-error *ngIf="!emailInput.hasError('required')">Uneli ste pogresan mail.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card *ngIf="this.isEditing">
+                    <div  fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>lock</mat-icon>
+                        <mat-form-field fxFlex="80%" hintLabel="Unesite minimum 8 karaktera">
+                            <input matInput ngModel  name="password" type="password" placeholder="Unesite sifru" 
+                            [(ngModel)]="this.profileInput.password" required #passwordInput="ngModel" password>
+                            <mat-hint align="end" >{{ passwordInput.value?.length }} / 8</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                <mat-card>
+                    <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                        <mat-icon>person</mat-icon>
+                        <div fxLayout="column" *ngIf="!this.isEditing">
+                            <mat-card-subtitle>Broj telefona</mat-card-subtitle>
+                            <span>{{this.profileInput.phoneNumber}}</span>
+                        </div>
+                        <mat-form-field  fxFlex="80%" *ngIf="this.isEditing">
+                            <input matInput ngModel  name="phoneNumber" type="text" placeholder="Unesite broj telefona." 
+                            [(ngModel)]="this.profileInput.name" required #phoneNumberInput="ngModel" >
+                            <mat-error *ngIf="phoneNumberInput.hasError('required')">Broj telefona je obavezan.</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card>
+                
+                <button type="submit" mat-raised-button *ngIf="this.isEditing" color="primary">Sacuvaj</button>
+
+            </form>
+        </section>
+        <div fxLayoutAlign = "center">
+            <button mat-raised-button color="primary" (click)="this.isEditing = !this.isEditing">
+                Izmeni profil
+            </button>
+        </div>
+    </div>
+    <div fxFlex="45%" fxFlex.xs="95%" fxLayout="column">
+        <h1>Omiljeni proizvodi</h1>
+        <div fxLayouth="column" class="table-container" >
+        <div fxLayouth="column" fxLayoutAlign="center" *ngFor="let f of obs1 | async">
+            <mat-card>
+                <div fxLayouth="row" fxLayoutAlign="start center" fxLayoutGap="2vw">
+                    <div fxFlex="10%">
+                        <img class="width100" mat-card-image src={{f.image}}>
+                    </div>
+                    <div fxFlex="40%" fxLayout="column">
+                        <mat-card-title><a routerLink="/item/{{f.id}}">{{f.name}}</a></mat-card-title>
+                        <mat-card-subtitle>Zemlja porekla: {{f.country}}</mat-card-subtitle>
+                        <p>Opis: {{f.description}}</p>
+                    </div>
+                    <div fxFlex="40%" fxLayoutAlign="end" class="marginRight">
+                        <button mat-raised-button color="primary" (click)="deleteFavourite(f)" >Obrisi</button>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        </div>
+        <mat-paginator [pageSize]="4" #favouriteItemsPaginator="matPaginator" ></mat-paginator>
+    </div>
+    <div fxFlex="95%" fxFlex.xs="95%">
+        <h1>Pregled narudzbina</h1>
+        <mat-form-field>
+            <input matInput type="text" (keyup)="doFilter($event)" placeholder="Pretrazi">
+        </mat-form-field>
+        <mat-accordion >
+            <mat-expansion-panel hideToggle *ngFor="let order of obs | async ">
+                <mat-expansion-panel-header>
+                <mat-panel-title fxFlex="40%" >
+                    {{order.id}}
+                </mat-panel-title>
+                <mat-panel-description fxFlex="60%" >
+                    <div fxFlex="50%">Ukupno: {{order.payment}}din.</div>
+                    <div fxFlex="50%">Status: {{order.status}}</div>
+                </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="borderRed">
+                    <div fxFlex="50%">
+                            <div ><b>Vreme:</b> {{order.date}}</div>
+                            <div><b>Adresa:</b> {{order.address}}</div>
+                            <div><b>Grad:</b> {{order.city}}</div>
+                            <div *ngIf="this.getOrderStatus(order) === 'completed'"><b>Ocena:</b> {{order.stars}}</div>
+                    </div>
+                    <div fxFlex="50%" fxLayoutAlign="end" >
+                        <button color="primary" *ngIf="this.getOrderStatus(order) === 'going' || this.getOrderStatus(order) === 'canceled'" (click)="openDialog(order)" mat-raised-button>Izmeni</button>
+                        <button color="primary" *ngIf="this.getOrderStatus(order) === 'completed' || this.getOrderStatus(order) === 'canceled' " (click)="deleteOrder(order)" mat-raised-button>Obrisi</button>
+                    </div>
+                </div>
+               
+                <div class="border" *ngFor="let orderItem of order.items" fxLayouth="row" >
+                    <section fxFlex="10%">
+                        <img mat-card-image src={{this.getItem(orderItem.idItem)!.image}}>
+                    </section>
+                    <section fxFlex="45%" >
+                        <div><a routerLink="/item/{{this.getItem(orderItem.idItem)!.id}}" ><b>{{this.getItem(orderItem.idItem)!.name}}</b></a></div>
+                        <div>{{this.getItem(orderItem.idItem)!.description}}</div>
+                    </section>
+                    <section fxFlex="45%" >
+                        <div><b>Kolicina:</b> {{orderItem.amount}}</div>
+                        <div><b>Cena stavke:</b> {{orderItem.payment}}</div>
+                    </section>
+                    <section fxFlex="45%" >
+                        <div><b>Velicina:</b> {{orderItem.size}}</div>
+                    </section>
+                </div>
+            
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-paginator #orderPaginator="matPaginator" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

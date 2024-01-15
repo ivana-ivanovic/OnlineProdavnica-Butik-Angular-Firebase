@@ -1,0 +1,58 @@
+img {
+    width: 30vw;
+    height: 40vw;
+    padding: 30px;
+}
+mat-button-toggle-group {
+    width: 20vw;
+}
+.buttonComment {
+    width: 12vw;
+}
+.imgWidth100px {
+    width: 8vw;
+    height: 12vw;
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-top: 16px;
+
+}
+.width20px{
+    width: 5vw;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+.marginBottom {
+    margin-bottom: 5px;
+}
+mat-card-subtitle {
+    font-size: 2vw;
+    width: 100%;
+}
+mat-card-content {
+    border-top: 2px solid #b3b3b3;
+}
+h1{
+    border-bottom: 2px solid #dc0f0f;
+}
+.imageStar {
+    font-size: 48px;
+    width:fit-content;
+    height: fit-content;
+
+}
+.buttonStar {
+    width: 48px;
+    height: 48px;
+    margin: 10px;
+}
+.hovered:hover {
+    background-color: #e0e0e0;
+}
+
+

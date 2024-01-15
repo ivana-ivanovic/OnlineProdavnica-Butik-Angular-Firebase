@@ -1,0 +1,106 @@
+
+<div  fxLayout="row wrap" fxLayoutGap="0px grid" fxLayoutAlign="space-around start center" >
+    <div fxFlex="45%" fxFlex.xs="95%" >
+        <img mat-card-image src={{item.image}}>
+    </div>
+    <div fxFlex="45%" fxFlex.xs="95%" fxLayout="row" >
+        <div  fxLayout="column" fxLayoutGap="16px"  fxFlex="50%">
+            <h1>{{item.name}}</h1>
+            <h2>Cena: {{item.price}} din.</h2>
+            <h2>Opis: {{item.description}}</h2>
+            <h2>Zemlja porekla: {{item.country}}</h2>
+            <h2>Ocena: {{stars.toFixed(2)}}</h2>
+            <mat-button-toggle-group [(ngModel)]="selectedSize" >
+                <mat-button-toggle (change)="onValChange($event)" fxFlex="25%"  value="S">S</mat-button-toggle>
+                <mat-button-toggle (change)="onValChange($event)" fxFlex="25%" value="M">M</mat-button-toggle>
+                <mat-button-toggle (change)="onValChange($event)" fxFlex="25%" value="L">L</mat-button-toggle>
+                <mat-button-toggle (change)="onValChange($event)" fxFlex="25%" value="XL">XL</mat-button-toggle>
+            </mat-button-toggle-group>
+            <button mat-raised-button color="primary" (click)="addToCart()">Dodaj u korpu</button>
+            <div *ngIf="this.message"><p >Odaberite velicinu.</p></div>
+        </div>
+        <div fxFlex="50%" fxLayoutAlign="end">
+            <button mat-icon-button *ngIf="this.isFavourite && this.isLogged" (click)="toggleFavourite()" color="primary" class="buttonStar" ><mat-icon class="imageStar">star</mat-icon></button>
+            <button mat-icon-button *ngIf="!this.isFavourite && this.isLogged" (click)="toggleFavourite()" color="primary" class="buttonStar" ><mat-icon class="imageStar">star_outline</mat-icon></button>
+        </div>
+    </div>
+    <div fxFlex="47%" fxFlex.xs="95%"  fxLayout= "column" >
+        <h1>Slicni proizvodi</h1>
+        <div fxLayout= "row" fxFlex="100%" fxLayoutGap = "5px">
+            <div fxFlex=23% *ngFor="let item of itemsSimilar | slice:0:4;">
+                <mat-card class="hovered">
+                    <mat-card-header>
+                        <mat-card-title><a routerLink="/item/{{item.id}}">{{item.name}}</a></mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content >
+                        <img class="imgWidth100px" mat-card-image src={{item.image}}>
+                        <p>Cena: {{item.price}} din.</p>
+                        <p>Opis: {{item.description}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="47%" fxFlex.xs="95%"  fxLayout= "column">
+        <h1>Drugi su kupili i ovo:</h1>
+        <div fxLayout= "row" fxFlex="100%" fxLayoutGap = "5px">
+            <div fxFlex=23%  *ngFor="let item of otherBought | slice:0:4;">
+                <mat-card class="hovered" fxLayout= "column">
+                    <mat-card-header>
+                        <mat-card-title><a routerLink="/item/{{item.id}}">{{item.name}}</a></mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content  fxLayout= "column" fxLayoutAlign="space-around start center">
+                        <img class="imgWidth100px" mat-card-image src={{item.image}}>
+                        <p>Cena: {{item.price}} din.</p>
+                        <p>Opis: {{item.description}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    <div fxFlex="45%" fxFlex.xs="95%"  fxLayout= "column" >
+        <h1>Komentari</h1>
+        
+            <div class="marginBottom" *ngFor="let comment of commentArray">
+                <mat-card fxFlex="100%">
+                    <mat-card-header>
+                      <mat-card-title>{{comment.idUser}}</mat-card-title>
+                      <mat-card-subtitle><mat-icon>star</mat-icon>{{comment.stars}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <p>{{comment.comment}}</p>
+                      <p>{{comment.date}}</p>
+                    </mat-card-content>
+                  </mat-card>
+            </div>
+        
+    </div>
+    <div fxFlex="45%" fxFlex.xs="95%"  >
+        <div class="borderBlack" *ngIf="this.isLogged && this.ordered">
+            <h1>Dodaj komentar:</h1>
+            <div  fxLayout="row">
+                <h3>Ocenite:</h3>
+                <div *ngFor="let ratingId of ratingArr;index as i" >
+                    <button class="width20px" mat-icon-button [id]="'star_'+i" (click)="onClick(i+1)" >
+                        <mat-icon>{{this.showIcon(i)}}</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <h3>Komentar:</h3>
+                <form  #f="ngForm" (ngSubmit)="onSubmit(f)">
+                    <mat-form-field appearance="fill">
+                        <textarea matInput ngModel  cdkTextareaAutosize  name="commentInput"
+                            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"  cdkAutosizeMaxRows="5" required></textarea>
+                    </mat-form-field>
+                    <button type="submit" class="buttonComment" mat-raised-button color="primary" [disabled]="f.invalid">Posalji</button>
+                </form>
+            </div>
+        </div>
+        <div *ngIf="!this.ordered && this.isLogged" >
+            <p>Samo osobe koje su narucile proizvod mogu da komentarisu</p>
+        </div>
+    </div>
+    
+</div>
+

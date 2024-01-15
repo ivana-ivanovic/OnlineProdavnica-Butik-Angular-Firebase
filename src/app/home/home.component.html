@@ -1,0 +1,17 @@
+<h2>Najprodavaniji proizvodi</h2>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid"  class="table-container" >
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let i of itemsArray | slice:0:8; ">
+          <mat-card >
+            <mat-card-header >
+              <mat-card-title><a routerLink="/item/{{i.item.id}}" >{{i.item.name}}</a></mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src={{i.item.image}}>
+            <mat-card-content>
+              <p>Cena: {{i.item.price}} din.</p>
+              <p>Opis: {{i.item.description}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+    </div>   
+  </div>

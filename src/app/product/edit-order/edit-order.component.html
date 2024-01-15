@@ -1,0 +1,49 @@
+<div fxLayout="column">
+    <h2>Izmena narudzbine</h2>
+    <p><b>Sifra:</b> {{order.id}}<br>
+    <b>Vreme:</b> {{order.date}}</p>
+    <div fxLayout="column" *ngIf="selectedStatus === 'completed'">
+        <b>Ocena:</b>
+        <div fxLayout="row">
+            <div *ngFor="let ratingId of ratingArr;index as i" >
+                <button  mat-icon-button [id]="'star_'+i" (click)="onClick(i+1)" >
+                    <mat-icon>{{this.showIcon(i)}}</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <mat-dialog-content>
+        <form  #editForm="ngForm" fxLayout="column" (ngSubmit)="finishEditing(editForm)">
+            <div>
+                <mat-form-field>
+                    <b>Adresa:</b>
+                    <input matInput ngModel  name="address" type="text"
+                    [(ngModel)]="this.order.address" required #addressInput="ngModel" >
+                    <mat-error *ngIf="addressInput.hasError('required')">Adresa je obavezna</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <b>Grad:</b>
+                    <input matInput ngModel  name="city" type="text"
+                    [(ngModel)]="this.order.city" required #cityInput="ngModel" >
+                    <mat-error *ngIf="cityInput.hasError('required')">Grad je obavezan</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <b>Status:</b>
+                    <mat-select [(value)]="selectedStatus">
+                        <mat-option value="completed">Zavrsena</mat-option>
+                        <mat-option value="canceled" >Otkazana</mat-option>
+                        <mat-option value="going">Tekuca</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+           
+            
+            <button mat-raised-button color="primary" type="submit" >Izmeni</button>
+        </form>
+    </mat-dialog-content>
+    <mat-dialog-actions fxLayoutAlign="end" >
+       
+        
+        <button mat-button mat-dialog-close>Nazad</button>
+    </mat-dialog-actions>
+</div>    

@@ -1,0 +1,34 @@
+.content {
+    padding: 16px;
+}
+
+
+.content mat-card img {
+    width: 14vw;
+    height: 20vw;
+    margin: 5px;
+}
+mat-drawer {
+    width: 20%;
+}
+mat-paginator {
+    background-color: #dc0f0f;
+    margin-top: 10px;
+    color: white;
+}
+mat-card-header {
+    border-bottom: 2px solid #dc0f0f;
+}
+app-item-filter {
+    height: 100%;
+}
+.table-container {
+    margin: auto;
+    width: 100%;
+    overflow: auto;
+    min-height: 70vw;
+}
+mat-form-field{
+    width: 100%;
+}
+   

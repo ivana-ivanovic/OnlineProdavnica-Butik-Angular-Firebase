@@ -1,0 +1,33 @@
+header {
+    display: block;
+    background-color: #dc0f0f;
+    height: 10vw;
+    padding-bottom: 20px;
+}
+.height50 {
+    height: 50%;
+}
+.fontSize30px {
+    font-size: 3vw;
+}
+
+header a {
+    padding-right: 1vw;
+}
+
+footer {
+    background-color: #dc0f0f;
+    height: 10vw;
+    margin-top: 2vw;
+}
+.socialImage {
+    width: 3vw;
+    padding: 2vw;
+}
+footer a, header a {
+    color: white;
+}
+.height10vw {
+    height: 13vw;
+}
+

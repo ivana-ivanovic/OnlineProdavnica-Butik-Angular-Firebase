@@ -1,0 +1,11 @@
+.content mat-card img {
+    width: 14vw;
+    height: 20vw;
+    margin: 5px;
+}
+mat-card-header {
+    border-bottom: 2px solid #dc0f0f;
+}
+mat-card{
+    width: 14vw;
+}

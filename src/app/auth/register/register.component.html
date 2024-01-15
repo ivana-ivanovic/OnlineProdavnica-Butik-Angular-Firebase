@@ -1,0 +1,54 @@
+<section>
+    <form fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="20px"
+    #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <mat-form-field>
+            <input type="text" ngModel matInput placeholder="Ime" name="name"
+            required  #nameInput="ngModel">
+            <mat-error *ngIf="nameInput.hasError('required')" >Ime je obavezno.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" ngModel matInput placeholder="Prezime" name="surname"
+            required  #surnameInput="ngModel">
+            <mat-error *ngIf="surnameInput.hasError('required')" >Prezime je obavezno.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="email" ngModel matInput placeholder="Email" name="email"
+            required email #emailInput="ngModel">
+            <mat-error *ngIf="emailInput.hasError('required')" >Email je obavezan.</mat-error>
+            <mat-error *ngIf="!emailInput.hasError('required')" >Uneli ste pogresan email.</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="Unesite minimum 8 karaktera.">
+            <input type="password" ngModel matInput placeholder="Sifra" name="password"
+            required minlength="8" #passInput="ngModel">
+            <mat-hint align="end"> {{ passInput.value?.length }} / 8 </mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" ngModel matInput placeholder="Ulica i broj" name="address"
+            required  #addressInput="ngModel">
+            <mat-error *ngIf="addressInput.hasError('required')" >Ulica i broj su obavezni</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" ngModel matInput placeholder="Grad" name="city"
+            required  #cityInput="ngModel">
+            <mat-error *ngIf="cityInput.hasError('required')" >Grad je obavezan</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="text" ngModel matInput placeholder="Broj telefona" name="phoneNumber"
+            required  #phoneNumberInput="ngModel">
+            <mat-error *ngIf="phoneNumberInput.hasError('required')" >Broj telefona je obavezan</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Datum rodjenja"  [matDatepicker]="picker" ngModel name="birthDate" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-checkbox color="primary" ngModel name="acceptance" required>
+            Prihvatam uslove koriscenja.
+        </mat-checkbox>
+        <button type="submit" mat-raised-button color="primary"  [disabled]="f.invalid" >Posalji</button>
+        <mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+        <a routerLink="/login">Nazad</a>
+        
+    </form>
+</section>

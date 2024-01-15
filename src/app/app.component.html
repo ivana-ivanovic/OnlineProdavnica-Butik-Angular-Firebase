@@ -1,0 +1,63 @@
+<header>
+  <div class="height50">
+    <div>
+      <a routerLink="/"><img class="height10vw" mat-card-image src="./assets/images/LOGO.jpg"></a>
+    </div>
+    <div fxFlex fxLayoutAlign="end" fxLayoutGap="20px">
+      <a routerLink="/register" *ngIf="userService.currentUser.id == ''" >Registracija</a>
+      <a routerLink="/login" *ngIf="userService.currentUser.id == ''">Login</a>
+      <a routerLink="/profile" *ngIf="userService.currentUser.id != ''">Profil</a>
+      <a *ngIf="userService.currentUser.id != ''" (click)="logOut()">Odjavi se</a>
+    </div>
+    
+</div>
+<div class="height50"  fxLayoutAlign="center end" >
+  <button class="fontSize30px" mat-button [matMenuTriggerFor]="woman">Zene</button>
+  <mat-menu #woman="matMenu" >
+    <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center center">
+    <a routerLink="/items/woman/tshirt" >Majce</a>
+    <a routerLink="/items/woman/sweatshirt" >Dukserice</a>
+    <a routerLink="/items/woman/pants" >Pantalone</a>
+    <a routerLink="/items/woman/tracksuit" >Trenerice</a>
+    <a routerLink="/items/woman/skirt">Suknje</a>
+    </div>
+  </mat-menu>
+  <button class="fontSize30px" mat-button [matMenuTriggerFor]="man" >Muskarci</button>
+  <mat-menu #man="matMenu" >
+    <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center center">
+      <a routerLink="/items/man/tshirt" >Majce</a>
+      <a routerLink="/items/man/sweatshirt" >Dukserice</a>
+      <a routerLink="/items/man/pants" >Pantalone</a>
+      <a routerLink="/items/man/tracksuit" >Trenerice</a>
+    </div>
+  </mat-menu>
+  <button class="fontSize30px" mat-button [matMenuTriggerFor]="children">Deca</button>
+  <mat-menu #children="matMenu" >
+    <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center center">
+      <a routerLink="/items/child/tshirt" >Majce</a>
+      <a routerLink="/items/child/sweatshirt" >Dukserice</a>
+      <a routerLink="/items/child/pants" >Pantalone</a>
+      <a routerLink="/items/child/tracksuit" >Trenerice</a>
+    </div>
+  </mat-menu>
+  <div>
+    <a routerLink="/cart" >
+      <mat-icon matBadge="{{this.badgeNumber}}" matBadgeOverlap="false" matBadgeSize="small" matBadgeColor="warn">shopping_cart</mat-icon>
+    </a>
+  </div>
+</div>
+
+</header>
+<router-outlet  ></router-outlet>
+<footer fxLayout="row">
+  <div fxFlex="60%"  fxLayout="row" fxLayoutAlign="center center" >
+    <a href="https://www.facebook.com/" alt="facebook"><img class="socialImage" src="./assets/images/facebook.png"></a>
+		<a href="https://www.google.com/" alt="google"><img class="socialImage"  src="./assets/images/google.jpg"></a>
+		<a href="https://www.instagram.com/?hl=sr" alt="instagram"><img  class="socialImage"  src="./assets/images/instagram.png"></a>
+  </div>
+  <div  fxFlex="40%" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2vw" > 
+    <a href="#" >Kontakt</a>
+    <a routerLink="/">Pocetna</a>
+  </div>
+
+</footer>

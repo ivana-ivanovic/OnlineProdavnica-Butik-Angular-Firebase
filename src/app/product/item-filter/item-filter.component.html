@@ -1,0 +1,24 @@
+<div>
+    <h3>Velicina</h3>
+    <mat-selection-list #sizes [(ngModel)]="selectedOptionsSize" (ngModelChange)="onNgModelChange($event)">
+      <mat-list-option *ngFor="let size of typesOfSize"  [value]="size" >
+        {{size}}
+      </mat-list-option>
+    </mat-selection-list>
+    <h3>Zemlja</h3>
+    <mat-selection-list #countries [(ngModel)]="selectedOptionsCountry" (ngModelChange)="onNgModelChange($event)">
+      <mat-list-option *ngFor="let country of typesOfCountry"  [value]="country" >
+        {{country}}
+      </mat-list-option>
+    </mat-selection-list>
+    <h3>Cena</h3>
+    <mat-slider #price thumbLabel [displayWith]="formatLabel" step="100"  min="0"  max="10000" aria-label="units"
+    (change)="onNgModelChange($event)"></mat-slider>
+
+    <h3>Ocena</h3>
+    <mat-selection-list #stars [(ngModel)]="selectedOptionsStars" (ngModelChange)="onNgModelChange($event)">
+      <mat-list-option *ngFor="let star of typesOfStars"  [value]="star.value" >
+        {{star.name}}
+      </mat-list-option>
+    </mat-selection-list>  
+</div>

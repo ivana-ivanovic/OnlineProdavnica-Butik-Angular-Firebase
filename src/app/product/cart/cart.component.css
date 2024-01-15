@@ -1,0 +1,11 @@
+.image {
+    width: 50px;
+    padding-top: 16px;
+}
+table {
+    width: 600px;
+}
+
+th {
+    text-align: center;
+}

@@ -1,0 +1,35 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <app-item-filter (filter)="onFilter($event)"></app-item-filter>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="content">
+      <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field>
+          <input matInput type="text" (keyup)="doFilter($event)" placeholder="Pretrazi">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row wrap" fxLayoutGap="16px grid"  class="table-container" >
+          <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of obs | async ">
+            <mat-card >
+              <mat-card-header >
+                <mat-card-title><a routerLink="/item/{{item.id}}" >{{item.name}}</a></mat-card-title>
+              </mat-card-header>
+              <img mat-card-image src={{item.image}}>
+              <mat-card-content>
+                <p>Cena: {{item.price}} din.</p>
+                <p>Opis: {{item.description}}</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+      </div>
+      
+    </div>
+    <mat-paginator  [pageSizeOptions]="[8, 16, 24, 32]"></mat-paginator>
+    
+
+  </mat-drawer-content>
+</mat-drawer-container>
+
+
+
